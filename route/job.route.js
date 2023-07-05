@@ -3,6 +3,7 @@ import {
   createJob,
   deleteJob,
   getJobs,
+  singleJob,
   updateJob,
 } from '../controller/job.controller.js';
 
@@ -13,5 +14,7 @@ jobRoute.post('/', createJob);
 jobRoute.get('/', getJobs);
 
 jobRoute.put('/:jobId', updateJob);
+
+jobRoute.get('/:jobId', singleJob);
 
 jobRoute.delete('/:jobId', deleteJob);

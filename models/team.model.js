@@ -15,13 +15,16 @@ const TeamSchema = new Schema(
       required: true,
     },
     phone: {
-      type: String,
+      type: Number,
+      default: '000000'
     },
     email: {
       type: String,
+      default: 'Empty'
     },
     facebook: {
       type: String,
+      default: 'Empty'
     },
   },
   {timestamps: true}

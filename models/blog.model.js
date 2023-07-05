@@ -13,6 +13,9 @@ const BlogSchema = new Schema(
     img: {
       type: String,
     },
+    imgId: {
+      type: String,
+    },
   },
   {timestamps: true}
 );

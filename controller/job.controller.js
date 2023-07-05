@@ -21,6 +21,15 @@ export const updateJob = async (req,res,next) => {
   }
 };
 
+export const singleJob = async (req,res,next) => {
+  try {
+    const singleJob = await jobModel.findById(req.params.jobId);
+    res.status(201).send(singleJob)
+  } catch (error) {
+    next(error)
+  }
+};
+
 export const deleteJob = async (req,res,next) => {
   try {
     await jobModel.findByIdAndDelete(req.params.jobId);

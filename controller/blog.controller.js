@@ -30,6 +30,15 @@ export const getBlog = async (req,res,next) => {
   }
 };
 
+export const getSingleBlog = async (req,res,next) => {
+  try {
+    const blogSingleData = await blogModel.findById(req.params.blogId);
+    res.status(201).send(blogSingleData);
+  } catch (error) {
+    next(error)
+  }
+};
+
 export const deleteBlog = async (req,res,next) => {
   try {
     await blogModel.findByIdAndDelete(req.params.blogId);
