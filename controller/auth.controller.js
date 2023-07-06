@@ -1,30 +1,39 @@
-import jwt from "jsonwebtoken";
-import { createError } from "../utils/error.handler.js";
-import authModel from "../models/auth.model.js";
+import jwt from 'jsonwebtoken';
+import {createError} from '../utils/error.handler.js';
+import authModel from '../models/auth.model.js';
 
-export const handleLogin = async (req,res,next) => {
-  const email = req.body.email;
+export const handleReg = async (req, res, next) => {
   try {
-    if (email !== process.env.EMAIL){
-      return next(createError(404, 'Unauthorized!'))
+    const exAdmin = await authModel.find();
+    
+    if (exAdmin.length) {
+      return next(createError(500, 'Not Complate!'));
     }
-    const admin = await authModel.findOne({email: email});
-
-    if (!admin){
-      const newAdmin = new authModel(req.body);
-      await newAdmin.save();
-    }
-    const existAdmin = await authModel.findOne({email: email})
-    const token = jwt.sign(
-      {id: existAdmin._id},
-      process.env.JWT_SECRET
-    )
-    res.cookie('access_token', token, {
-      httpOnly: true,
-      sameSite: 'none',
-      secure: true
-    }).status(200).send('Login Success!')
+    const newAdmin = new authModel(req.body);
+    await newAdmin.save();
+    res.status(201).send('Registration Complate!')
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
+};
+
+export const handleLogin = async (req, res, next) => {
+  const {email, password} = req.body;
+  try {
+    const admin = await authModel.findOne({email: email});
+    if(!admin) return next(createError('404', 'Email Not Found!'));
+    const pass = await authModel.findOne({password: password});
+    if(!pass) return next(createError(404, 'Password Not Match!'))
+    const token = jwt.sign({id: admin._id}, process.env.JWT_SECRET);
+    res
+      .cookie('access_token', token, {
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+      })
+      .status(200)
+      .send('Login Success!');
+  } catch (error) {
+    next(error);
+  }
+};

@@ -4,7 +4,9 @@ const TeamSchema = new Schema(
   {
     img: {
       type: String,
-      required: true,
+    },
+    imgId: {
+      type: String,
     },
     name: {
       type: String,

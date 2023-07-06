@@ -8,7 +8,6 @@ import {authRoute} from './route/auth.route.js';
 import {jobRoute} from './route/job.route.js';
 import {teamRoute} from './route/team.route.js';
 import {galleryRoute} from './route/gallery.route.js';
-import {formRoute} from './route/form.route.js';
 import {v2 as cloudinary} from 'cloudinary';
 import Multer from 'multer';
 
@@ -109,7 +108,6 @@ app.use('/api/blog', blogRoute);
 app.use('/api/job', jobRoute);
 app.use('/api/team', teamRoute);
 app.use('/api/gallery', galleryRoute);
-app.use('/api/submit-form', formRoute);
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;
