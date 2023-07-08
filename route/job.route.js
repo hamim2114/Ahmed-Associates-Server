@@ -6,15 +6,16 @@ import {
   singleJob,
   updateJob,
 } from '../controller/job.controller.js';
+import { verifyToken } from '../middlewere/verify.token.js';
 
 export const jobRoute = express.Router();
 
-jobRoute.post('/', createJob);
+jobRoute.post('/',verifyToken, createJob);
 
 jobRoute.get('/', getJobs);
 
-jobRoute.put('/:jobId', updateJob);
+jobRoute.put('/:jobId',verifyToken, updateJob);
 
 jobRoute.get('/:jobId', singleJob);
 
-jobRoute.delete('/:jobId', deleteJob);
+jobRoute.delete('/:jobId',verifyToken, deleteJob);

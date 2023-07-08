@@ -6,15 +6,16 @@ import {
   getSingleBlog,
   updateBlog,
 } from '../controller/blog.controller.js';
+import { verifyToken } from '../middlewere/verify.token.js';
 
 export const blogRoute = express.Router();
 
-blogRoute.post('/', createBlog);
+blogRoute.post('/', verifyToken, createBlog);
 
 blogRoute.get('/', getBlog);
 
-blogRoute.put('/:blogId', updateBlog);
+blogRoute.put('/:blogId',verifyToken, updateBlog);
 
 blogRoute.get('/:blogId', getSingleBlog);
 
-blogRoute.delete('/:blogId', deleteBlog);
+blogRoute.delete('/:blogId',verifyToken, deleteBlog);
