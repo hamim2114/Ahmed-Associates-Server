@@ -23,9 +23,8 @@ export const handleLogin = async (req, res, next) => {
     if(!admin) return next(createError('404', 'Email Not Found!'));
     const pass = await authModel.findOne({password: req.body.password});
     if(!pass) return next(createError(404, 'Password Incorrect!'))
-    const token = jwt.sign({id: admin._id}, process.env.JWT_SECRET);
+    const token = jwt.sign({id: admin._id}, process.env.JWT_SECRET, {expiresIn: '7d'});
     const {password, ...others} = admin._doc;
-    
     res
       .cookie('ahmed', token, {
         httpOnly: true,
