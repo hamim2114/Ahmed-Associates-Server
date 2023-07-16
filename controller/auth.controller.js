@@ -38,6 +38,14 @@ export const handleLogin = async (req, res, next) => {
   }
 };
 
+export const handleVerify = (req,res,next) => {
+  try {
+    res.status(201).send('Authenticated!')
+  } catch (error) {
+    next(error)
+  }
+}
+
 export const handleLogout = (req,res,next) => {
   res
     .clearCookie('ahmed', {
