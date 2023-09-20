@@ -9,10 +9,30 @@ export const createTeam = async (req,res,next) => {
       next(error)
     }
 };
+
+export const updateTeam = async (req,res,next) => {
+  try {
+    const updatedTeam = await teamModel.findByIdAndUpdate(req.params.id, {
+      $set: req.body
+    }, {new: true});
+    res.status(201).send(updatedTeam)
+  } catch (error) {
+    next(error)
+  }
+}
+
 export const getTeams = async (req,res,next) => {
     try {
       const teams = await teamModel.find();
       res.status(201).send(teams);
+    } catch (error) {
+      next(error)
+    }
+};
+export const getSingleTeam = async (req,res,next) => {
+    try {
+      const team = await teamModel.findById(req.params.id);
+      res.status(201).send(team);
     } catch (error) {
       next(error)
     }

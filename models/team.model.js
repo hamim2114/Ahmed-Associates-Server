@@ -16,17 +16,9 @@ const TeamSchema = new Schema(
       type: String,
       required: true,
     },
-    phone: {
-      type: Number,
-      default: '000000'
-    },
-    email: {
+    desc: {
       type: String,
-      default: 'Empty'
-    },
-    facebook: {
-      type: String,
-      default: 'Empty'
+      required: true,
     },
   },
   {timestamps: true}

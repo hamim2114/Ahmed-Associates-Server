@@ -10,6 +10,8 @@ import {teamRoute} from './route/team.route.js';
 import {galleryRoute} from './route/gallery.route.js';
 import {v2 as cloudinary} from 'cloudinary';
 import Multer from 'multer';
+import { aboutRoute } from './route/about.route.js';
+import { practiceRoute } from './route/practice.route.js';
 
 const app = express();
 
@@ -104,6 +106,8 @@ app.post('/api/delete', async (req, res) => {
 });
 
 app.use('/api/auth', authRoute);
+app.use('/api/about', aboutRoute);
+app.use('/api/practice', practiceRoute);
 app.use('/api/blog', blogRoute);
 app.use('/api/job', jobRoute);
 app.use('/api/team', teamRoute);
