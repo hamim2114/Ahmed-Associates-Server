@@ -16,6 +16,15 @@ const TeamSchema = new Schema(
       type: String,
       required: true,
     },
+    phone: {
+      type: String,
+    },
+    email: {
+      type: String,
+    },
+    location: {
+      type: String,
+    },
     desc: {
       type: String,
       required: true,

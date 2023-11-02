@@ -12,6 +12,7 @@ import {v2 as cloudinary} from 'cloudinary';
 import Multer from 'multer';
 import { aboutRoute } from './route/about.route.js';
 import { practiceRoute } from './route/practice.route.js';
+import { newsRoute } from './route/news.route.js';
 
 const app = express();
 
@@ -109,6 +110,7 @@ app.use('/api/auth', authRoute);
 app.use('/api/about', aboutRoute);
 app.use('/api/practice', practiceRoute);
 app.use('/api/blog', blogRoute);
+app.use('/api/news', newsRoute);
 app.use('/api/job', jobRoute);
 app.use('/api/team', teamRoute);
 app.use('/api/gallery', galleryRoute);
