@@ -11,8 +11,8 @@ import {galleryRoute} from './route/gallery.route.js';
 import {v2 as cloudinary} from 'cloudinary';
 import Multer from 'multer';
 import { aboutRoute } from './route/about.route.js';
-import { practiceRoute } from './route/practice.route.js';
 import { newsRoute } from './route/news.route.js';
+import { legalServicesRoute } from './route/legalServices.route.js';
 
 const app = express();
 
@@ -108,7 +108,7 @@ app.post('/api/delete', async (req, res) => {
 
 app.use('/api/auth', authRoute);
 app.use('/api/about', aboutRoute);
-app.use('/api/practice', practiceRoute);
+app.use('/api/legalServices', legalServicesRoute);
 app.use('/api/blog', blogRoute);
 app.use('/api/news', newsRoute);
 app.use('/api/job', jobRoute);
